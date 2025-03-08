@@ -2,11 +2,11 @@
 
 
 const btnSearch = document.getElementById('btnSearch');
-
+const btnReset = document.getElementById('btnReset');
+const cardContainer = document.getElementById('card-container');
 function searchCondition() {
 const input = document.getElementById('conditionInput').value.toLowerCase();
-const cardContainer = document.getElementById('card-container');
-cardContainer.innerHTML = '';
+ restartCondition();
 fetch('travel_recommendation_api.json')
     .then(response => response.json())
     .then(data => {
@@ -66,4 +66,10 @@ fetch('travel_recommendation_api.json')
     .catch(error => console.error('Error fetching data:', error));
 }
 
+function restartCondition() {
+cardContainer.innerHTML = '';
+}
+
+
          btnSearch.addEventListener('click', searchCondition);
+            btnReset.addEventListener('click', restartCondition);
